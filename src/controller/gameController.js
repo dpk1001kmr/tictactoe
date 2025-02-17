@@ -5,22 +5,51 @@ class GameController {
   constructor() {}
 
   onHandleHumanButtonClick(e) {
-    console.log("human button");
+    gameModel.updatePlayingWith("Human");
+    gameModel.resetGame();
+    gameView.render(
+      gameModel.board,
+      gameModel.playerTurn,
+      gameModel.playingWith,
+      gameModel.gameOver
+    );
   }
 
   onHandleComputerButtonClick(e) {
-    console.log("computer button");
+    gameModel.updatePlayingWith("Computer");
+    gameModel.resetGame();
+    gameView.render(
+      gameModel.board,
+      gameModel.playerTurn,
+      gameModel.playingWith,
+      gameModel.gameOver
+    );
   }
 
   onHandleResetButtonClick(e) {
-    console.log("reset button");
+    gameModel.resetGame();
+    gameView.render(
+      gameModel.board,
+      gameModel.playerTurn,
+      gameModel.playingWith,
+      gameModel.gameOver
+    );
   }
 
   onHandleBoardCellClick(e) {
     const row = e.target.dataset.row;
     const column = e.target.dataset.column;
     gameModel.updateBoard(row, column);
-    gameView.render(gameModel.board, gameModel.playerTurn, gameModel.gameOver);
+    gameView.render(
+      gameModel.board,
+      gameModel.playerTurn,
+      gameModel.playingWith,
+      gameModel.gameOver
+    );
+
+    if (gameModel.playingWith === "Computer") {
+      console.log("Computer Turn");
+    }
   }
 }
 
