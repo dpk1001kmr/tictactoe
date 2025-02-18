@@ -6,7 +6,7 @@ class GameModel {
       [null, null, null],
     ];
     this.playerTurn = "O";
-    this.playingWith = "human";
+    this.playingWith = "Human";
     this.gameOver = -1;
     /**
      * -1 => game is running
