@@ -1,3 +1,4 @@
+import { computer } from "../computer/Computer.js";
 import { gameModel } from "../model/gameModel.js";
 import { gameView } from "../view/gameView.js";
 
@@ -47,8 +48,16 @@ class GameController {
       gameModel.gameOver
     );
 
-    if (gameModel.playingWith === "Computer") {
-      console.log("Computer Turn");
+    if (gameModel.playingWith === "Computer" && gameModel.gameOver === -1) {
+      const boardCopy = JSON.parse(JSON.stringify(gameModel.board));
+      const move = computer.getMove(boardCopy);
+      gameModel.updateBoard(move.row, move.column);
+      gameView.render(
+        gameModel.board,
+        gameModel.playerTurn,
+        gameModel.playingWith,
+        gameModel.gameOver
+      );
     }
   }
 }
